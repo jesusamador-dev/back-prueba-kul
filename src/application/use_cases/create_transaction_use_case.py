@@ -30,7 +30,7 @@ class CreateTransactionUseCase:
 
         # Paso 3: Preparar modelo de datos
         transaction = Transaction(
-            amount=transaction_data.amount,
+            amount=float(transaction_data.amount),
             currency=transaction_data.currency,
             customer_name=transaction_data.customer_information.first_name,
             customer_email=transaction_data.customer_information.email,
