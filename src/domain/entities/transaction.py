@@ -1,5 +1,6 @@
 import uuid
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from datetime import datetime
 
 from src.domain.config.constants import CURRENCY_ISO_TO_CODE
 
@@ -13,6 +14,7 @@ class Transaction:
     status: str
     gateway_transaction_id: str = None
     id: str = str(uuid.uuid4())
+    created_at: datetime = field(default_factory=datetime.utcnow)
 
     def convert_currency_iso_to_code(self) -> str:
         return CURRENCY_ISO_TO_CODE.get(self.currency)

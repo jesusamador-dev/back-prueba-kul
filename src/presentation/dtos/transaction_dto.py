@@ -3,6 +3,7 @@ from typing import Optional
 from decimal import Decimal
 
 from src.domain.config.constants import ACCEPTED_CURRENCIES
+from src.domain.entities.transaction import Transaction
 
 
 def validate_card_number(card_number: str) -> bool:
@@ -58,8 +59,32 @@ class CreateTransactionDTO(BaseModel):
         assert value > 0, ValueError('Amount must be greater than zero')
         return value
 
-    @field_validator('amount')
+    @field_validator('currency')
     def validate_currency(cls, value):
         if value not in ACCEPTED_CURRENCIES:
             raise ValueError(f"Currency {value} is not accepted.")
         return value
+
+
+class TransactionResponseDTO(BaseModel):
+    id: str
+    amount: float
+    currency: str
+    customer_name: str
+    customer_email: str
+    status: str
+    gateway_transaction_id: str
+    date: str
+
+    @classmethod
+    def from_entity(cls, transaction: Transaction) -> "TransactionResponseDTO":
+        return cls(
+            id=str(transaction.id),
+            amount=float(transaction.amount),
+            currency=transaction.currency,
+            customer_name=transaction.customer_name,
+            customer_email=transaction.customer_email,
+            status=transaction.status,
+            gateway_transaction_id=transaction.gateway_transaction_id,
+            date=transaction.created_at.strftime("%d/%m/%Y %H:%M")
+        )

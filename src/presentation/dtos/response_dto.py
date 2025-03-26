@@ -7,7 +7,7 @@ from uuid import uuid4
 class SuccessResponse(BaseModel):
     responseId: str = Field(default_factory=lambda: str(uuid4()), description="Unique ID for the response.")
     success: bool = Field(default=True, description="Indicates if the operation was successful.")
-    data: dict = Field(default={}, description="Data payload of the response.")
+    data: Union[Dict[str, Any], List[Any]] = Field(..., description="Data payload of the response.")
 
 
 class ErrorResponse(BaseModel):

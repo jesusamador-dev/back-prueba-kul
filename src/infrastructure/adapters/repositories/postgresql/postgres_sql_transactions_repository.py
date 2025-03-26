@@ -12,12 +12,33 @@ class PostgresSQLTransactionsRepository(TransactionsRepository):
         self.session.add(model)
         self.session.commit()
 
-    def get_by_id(self, transaction_id: str):
-        model = self.session.query(TransactionModel).get(transaction_id)
+    def get_by_id(self, id: str):
+        model = self.session.query(TransactionModel).get(id)
         if model:
-            return Transaction(**vars(model))
+            return Transaction(
+                id=model.id,
+                amount=float(model.amount),
+                currency=model.currency,
+                customer_email=model.customer_email,
+                customer_name=model.customer_name,
+                status=model.status,
+                gateway_transaction_id=model.gateway_transaction_id,
+                created_at=model.created_at
+            )
         return None
 
     def get_all(self):
         models = self.session.query(TransactionModel).all()
-        return [Transaction(**vars(model)) for model in models]
+        return [
+            Transaction(
+                id=model.id,
+                amount=float(model.amount),
+                currency=model.currency,
+                customer_email=model.customer_email,
+                customer_name=model.customer_name,
+                status=model.status,
+                gateway_transaction_id=model.gateway_transaction_id,
+                created_at=model.created_at
+            )
+            for model in models
+        ]

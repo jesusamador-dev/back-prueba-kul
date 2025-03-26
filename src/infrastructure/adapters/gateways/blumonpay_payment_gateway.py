@@ -75,8 +75,9 @@ class BlumonpayPaymentGateway(PaymentGateway):
                 raise blumonpay_error_mapper.map_error_to_exception(error_code, error_description)
 
             authorization = response_data.get('dataResponse', {}).get('authorization', 'No authorization found')
+            status = response_data.get('dataResponse', {}).get('description', 'No description found')
             return PaymentResult(
-                status=response_data["status"],
+                status=status,
                 id=authorization
             )
 
