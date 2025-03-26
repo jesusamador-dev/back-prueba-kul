@@ -2,6 +2,8 @@ from pydantic import BaseModel, EmailStr, constr, field_validator
 from typing import Optional
 from decimal import Decimal
 
+from src.domain.config.constants import ACCEPTED_CURRENCIES
+
 
 def validate_card_number(card_number: str) -> bool:
     def digits_of(n):
@@ -54,4 +56,10 @@ class CreateTransactionDTO(BaseModel):
     @field_validator('amount')
     def validate_amount(cls, value):
         assert value > 0, ValueError('Amount must be greater than zero')
+        return value
+
+    @field_validator('amount')
+    def validate_currency(cls, value):
+        if value not in ACCEPTED_CURRENCIES:
+            raise ValueError(f"Currency {value} is not accepted.")
         return value

@@ -3,6 +3,7 @@ from typing import Dict, Any
 import os
 
 from src.domain.interfaces.gateways.payment_gateway import PaymentGateway
+from src.infrastructure.mappers.blumonpay_error_mapper import BlumonpayErrorMapper
 from src.presentation.dtos.transaction_dto import CreateTransactionDTO
 
 
@@ -62,5 +63,21 @@ class BlumonpayPaymentGateway(PaymentGateway):
         headers = {'Authorization': f'Bearer {self.token}'}
         payment_url = f"{self.api_url}{self.payment_endpoint}"
         response = requests.post(payment_url, json=self.prepared_data, headers=headers)
-        response.raise_for_status()
-        return response.json()
+
+        if response.status_code == 200:
+            response_data = response.json()
+            if not response_data.get('status'):
+                blumonpay_error_mapper = BlumonpayErrorMapper()
+                error_details = response_data.get('error', {})
+                error_code = error_details.get('code')
+                error_description = error_details.get('description', 'Unknown error')
+                raise blumonpay_error_mapper.map_error_to_exception(error_code, error_description)
+
+            authorization = response_data.get('dataResponse', {}).get('authorization', 'No authorization found')
+            return {
+                'status': response_data['status'],
+                'authorization': authorization
+            }
+
+        raise Exception("Internal Server Error. Please try again or contact support.")
+
