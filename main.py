@@ -1,13 +1,10 @@
 from fastapi import FastAPI
+from src.presentation.middlewares.setup_exception_handlers import setup_exception_handlers
+from src.presentation.middlewares.standardize_response_middleware import standardize_response
+from src.presentation.routers.transactions_routes import router as transactions_router
 
 app = FastAPI()
+setup_exception_handlers(app)
+app.middleware("http")(standardize_response)
+app.include_router(transactions_router, prefix="/v1")
 
-
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
-
-
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Hello {name}"}

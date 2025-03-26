@@ -1,0 +1,11 @@
+node_modules
+.venv
+.env
+.env.*
+__pycache__/
+.venv/
+*.zip
+*.tfstate
+.idea
+.idea/aws.xml
+.idea/lambda-template.iml
