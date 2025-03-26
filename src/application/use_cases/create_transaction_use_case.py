@@ -43,6 +43,8 @@ class CreateTransactionUseCase:
 
             # Paso 4: Procesar el pago con los datos preparados
             payment_result = self.payment_gateway.process_payment()
+            transaction.status = payment_result.status
+            transaction.gateway_transaction_id = payment_result.id
 
             # Paso 5: Guardar en nuestra base de datos
             self.transactions_repository.save(transaction=transaction)

@@ -1,12 +1,14 @@
 from abc import ABC, abstractmethod
-from typing import Dict, Optional, Any
+from typing import Dict, Any
+
+from src.domain.value_objects.payment_result import PaymentResult
 
 
 class PaymentGateway(ABC):
 
 
     @abstractmethod
-    def process_payment(self) -> Dict[str, any]:
+    def process_payment(self) -> PaymentResult:
         """
         Procesa un pago a través del gateway de pago.
 

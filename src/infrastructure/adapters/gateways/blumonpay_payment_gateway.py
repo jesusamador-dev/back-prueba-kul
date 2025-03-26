@@ -3,6 +3,7 @@ from typing import Dict, Any
 import os
 
 from src.domain.interfaces.gateways.payment_gateway import PaymentGateway
+from src.domain.value_objects.payment_result import PaymentResult
 from src.infrastructure.mappers.blumonpay_error_mapper import BlumonpayErrorMapper
 from src.presentation.dtos.transaction_dto import CreateTransactionDTO
 
@@ -74,10 +75,10 @@ class BlumonpayPaymentGateway(PaymentGateway):
                 raise blumonpay_error_mapper.map_error_to_exception(error_code, error_description)
 
             authorization = response_data.get('dataResponse', {}).get('authorization', 'No authorization found')
-            return {
-                'status': response_data['status'],
-                'authorization': authorization
-            }
+            return PaymentResult(
+                status=response_data["status"],
+                id=authorization
+            )
 
         raise Exception("Internal Server Error. Please try again or contact support.")
 
