@@ -1,10 +1,9 @@
-from fastapi import APIRouter, HTTPException, Body, Depends
-from typing import List
+from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from src.application.use_cases.create_transaction_use_case import CreateTransactionUseCase
-from src.application.use_cases.get_all_transactions import GetAllTransactionsUseCase
-from src.application.use_cases.get_transaction import GetTransactionByIdUseCase
+from src.application.use_cases.transactions.create_transaction_use_case import CreateTransactionUseCase
+from src.application.use_cases.transactions.get_all_transactions import GetAllTransactionsUseCase
+from src.application.use_cases.transactions.get_transaction import GetTransactionByIdUseCase
 from src.domain.interfaces.gateways.payment_gateway import PaymentGateway
 from src.domain.interfaces.repositories.transactions_repository import TransactionsRepository
 from src.infrastructure.adapters.gateways.blumonpay_payment_gateway import BlumonpayPaymentGateway
