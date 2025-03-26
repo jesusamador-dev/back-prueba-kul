@@ -1,0 +1,11 @@
+﻿fastapi==0.115.11
+starlette==0.46.1
+pydantic==2.10.6
+pydantic_core==2.27.2
+uvicorn==0.34.0
+
+SQLAlchemy==2.0.39
+psycopg2-binary==2.9.10
+requests==2.32.3
+cryptography==44.0.2
+email_validator==2.2.0
