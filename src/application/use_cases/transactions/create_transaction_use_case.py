@@ -17,7 +17,7 @@ class CreateTransactionUseCase:
         self.payment_gateway = payment_gateway
         self.transactions_repository = transactions_repository
 
-    def execute(self, transaction_data: CreateTransactionDTO):
+    async def execute(self, transaction_data: CreateTransactionDTO):
         """
         Ejecuta el caso de uso para crear una transacción.
 

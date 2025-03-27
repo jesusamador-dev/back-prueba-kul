@@ -14,10 +14,12 @@ class TransactionDecryptor:
             "customer_information": {
                 k: self.encryption_service.decrypt(v)
                 for k, v in encrypted_dto.customer_information.items()
+                if v != ""
             },
             "card_information": {
                 k: self.encryption_service.decrypt(v)
                 for k, v in encrypted_dto.card_information.items()
+                if v != ""
             },
         }
 

@@ -36,10 +36,12 @@ def get_transaction_repository(db: Session = Depends(get_db_session)) -> Transac
     return PostgresSQLTransactionsRepository(session=db)
 
 
-def get_transaction_request_mapper(
+async def get_transaction_request_mapper(
+    request: Request,
     repo: UserKeysRepository = Depends(get_user_keys_repository),
-) -> TransactionRequestMapper:
-    return TransactionRequestMapper(user_keys_repo=repo)
+) -> CreateTransactionDTO:
+    mapper = TransactionRequestMapper(user_keys_repo=repo)
+    return await mapper(request)
 
 
 def get_transaction_response_mapper(
@@ -49,13 +51,14 @@ def get_transaction_response_mapper(
 
 
 @router.post("/transactions")
-def create_transaction(
+async def create_transaction(
     transaction: CreateTransactionDTO = Depends(get_transaction_request_mapper),
     payment_gateway: PaymentGateway = Depends(get_payment_gateway),
     transactions_repo: TransactionsRepository = Depends(get_transaction_repository)
 ):
     use_case = CreateTransactionUseCase(payment_gateway, transactions_repo)
-    return use_case.execute(transaction_data=transaction)
+    return await use_case.execute(transaction_data=transaction)
+
 
 
 @router.get("/transactions")

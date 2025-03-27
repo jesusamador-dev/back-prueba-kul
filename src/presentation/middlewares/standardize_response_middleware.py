@@ -16,6 +16,8 @@ async def standardize_response(request: Request, call_next):
     if 'content-length' in response.headers:
         del response.headers['content-length']
     if 200 <= response.status_code < 300:
+        if body == b'OK':
+            return response
         data = json.loads(body.decode())
         standardized_response = SuccessResponse(data=data)
         return JSONResponse(
