@@ -1,0 +1,130 @@
+{
+	"info": {
+		"_postman_id": "5e4a93a6-190f-446b-957f-19e82064f42b",
+		"name": "Kul Prueba",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7873696"
+	},
+	"item": [
+		{
+			"name": "Get all Transactions",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/v1/transactions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"transactions"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST \"http://localhost:8000/transactions\" \\\r\n     -H \"Content-Type: application/json\" \\\r\n     -d '{\r\n        \"amount\": \"10.00\",\r\n        \"currency\": \"484\",\r\n        \"customer_information\": {\r\n            \"first_name\": \"Homer\",\r\n            \"last_name\": \"Simpson\",\r\n            \"middle_name\": \"Jay\",\r\n            \"email\": \"homer@gmail.com\",\r\n            \"phone\": \"\",\r\n            \"city\": \"\",\r\n            \"address\": \"\",\r\n            \"postal_code\": \"\",\r\n            \"state\": \"\",\r\n            \"country\": \"MX\",\r\n            \"ip\": \"\"\r\n        },\r\n        \"card_information\": {\r\n            \"card_number\": \"1234123412341234\",\r\n            \"cvv\": \"123\",\r\n            \"card_holder_name\": \"HOMER JAY SIMPSON\",\r\n            \"expiration_year\": \"21\",\r\n            \"expiration_month\": \"01\"\r\n        }\r\n     }'\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Get by id Transactions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/v1/transactions/50d95594-65d0-426c-bc26-ef6639e0378b",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"transactions",
+						"50d95594-65d0-426c-bc26-ef6639e0378b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Generate keys",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/v1/keys/rsa/app_kul",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"keys",
+						"rsa",
+						"app_kul"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get keys",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/v1/keys/rsa/app_kul",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"keys",
+						"rsa",
+						"app_kul"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Transaction",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\": \"LnrpBBMvV0JqcR9zcwcUC5myOaL9CVblC+KTqqmT2n2RfIYD913wLPzzGg26auFd2r0ZI4o0je5OECyc5b/daSQ2wW7az/fPcAfhXECW/FW7Ba9FLqWdWWJSznCRUaHp6vcH+WuezLGoe6Q0sZ5cWWTEsl3+kMnQUqCGq0Jzh9ZtJ7v5jx/T1xlXKNyDwGFG0v/ZC9iybzj9e91zFadIUTAwuDBDMOjJTZP8ZjfT3N/tgtuOkSsmQaNlPu6FjpkZWkPRoHGGcz1zNTA2wyGNQog3BUUc//EzlU3FrecnKNQ961wD0/DiZN9KGtudRg16YH0CsBofHdHkWK87TvUwhw==\",\r\n    \"currency\": \"bkT0PSW1ghAtm3e7pWjurkONzKit3e/5iPgyTffEygQmyu0LmUnt56TS7tYNXiANpRIlSmL/IkXatu1cDs1j9w/qJ8B0N2vlV+2g9agHg2/Zwfd83vyyo0asZWfN3LPbmZTCWw7BNDJ2X1yJ/sqZYklFPy7Yt3dYEJ8PLf1CngSqw5oIbfKcBGUYgiqaQ8ye84fayUcrolAovP99jbp7Ad62nCuOSFDC/OlBw4n9HJt1C8GkMWDbTxUPBqkJdeSLM70iSx2wrkg2BSf48XCiIXUnQX1O9OECEBcU+rrChrPu5h6VfxY3C9curVbxkCMH1drPVW2lCOhFqjN0K2TJdQ==\",\r\n    \"customer_information\": {\r\n        \"first_name\": \"TYIUb1M06uDr3C7XwuZ6DgXIeUfKyEssi/sGnMZ/JBmkXHM+n5NKdWy65xx1yhQRL+i4GIGbpEDucaZYby7WwZKWrfbOy/Aq8AQfvdA92i2/CEElOa8XybLQ2T6TBSKnNFhjPei97XtdkEh9iQGlD+tZOwpgbUthUafX9fMe18hkSdMh4Ubl9KghwEAt42RbRsv/UXYLM7v84Aq7FrqXq5ynncK26a3jnnxQZ7oPidqfO+VNbeH0wv0lLj4bQoyWSVZidSryt9FGudPnzL4JU0mWHEZvyy8/uAyypcqqX9vkX9JJzNJC+YOPpfeiDm4GddLvjDlzfbmRLncFGjibNA==\",\r\n        \"last_name\": \"eREWFUpKFCg/THlezxzRwS+NpZbpa1sUWm308LbRqgk+z86oDShBUpljnmfPZ5Bg70yWxhVkYIHdmtxNsgG/wFibKsB6ej+VoPaQVhXb7EW+UTkiZ4WlnJUMUCwj1KdiNpP3Z1w+1k/9D4oDTc1tTaf7SNmQLtaMTs3oXB6Zw47tOS1tVSy33WJ1s7pkHYixSHQyv5A8p6Bf5xUezdVYAsmufMqIy11vSCFU2cYORwdcCx9SV/iLJdyMsWhjhMYh41FJpL4XiAbaFFgIaum1rdHlPo5PORDzgiprCmKIfwt7sdJX6wtG68D+/5yBoJwfX3UNhXCp5XZwALemLyHmQA==\",\r\n        \"middle_name\": \"YOFV6phnJkQd0hdhhYXeL2w9GNCFlgFVgrb5cE3N747cfWLs8Liwf0X4lyW4ciOqnKlcV1TZd+KFKKT3PgS3UN3W41gOwA82L5KXt5ulDmibxEnngPH3IozjTsTO337aYgZ4jJXU5q/gUTUD7tBI/90wEWTxTBYiocBvk1XGUYcLLX/+lWZCPdljqSavz9jnyWpBMXiKwJwPpcH82Y2czGrRvPBwV0fxQZNYGBSnCYpn5fxL/uHqWFgR+2LiHOsjAg2v5m+ASiCGU9yFIYP0/bfDiFK2Dti6Hw93xNqvVF748PSogJ4AHsyCZB+2oOz9tghXocIa9YFUsHLW6MEeIA==\",\r\n        \"email\": \"AQaGYfeMDWMKKT4TnvMiZ2HRCZhnuIaqYZWl5ijfnU8+yIYkoLIeAdTBw+aQqOp4XshSQrbITrSySQa86mDvZHWqIPSsPexOd5822jzxO0j/Ehs0/25Omo9s9/ALJv7DcwDIqeWyCuoBGdHLJYY3ecsUtq9lg5TY7Uhg6syH8U20bU8f7lzeRRWZoQMM8DAPC320SHGBWT/J+ti5A0UcxatAitKSyjVxPfTa/lO76qMflYwV7HOVcNJyQmUY0pICyxyJQZoXUKHutwGD+yCsaxSrzlJKjz5NRIpkxyH2UwJrYqglVtJC8+ApOJzOHPKQ6y3q3fLLBbXCMNVkUXppRA==\",\r\n        \"phone\": \"d1rg0ALCW8IZ2I69hgBRkhp4OcCrShk+eOneVom7hVfXSAxZfPLVavO1aLte8fwkreTZUWsDqpa18nakx9RAqbLRmQ8QwvCvYDwwhsAL0WPMgW10DsqyOsBQ4W3UJGvvHWMGhUPOmahY3SbGWOXopRvVE27peokY++C3DayrFPnsHHN1/nz8JXEeyGjvzbAjx9NND4QttTkCiMY6lqKwd7d/B1W4NHWEqusaGiolFhrgxihOrfgqZ+V+MIdRYOkTvEKUKE66zJC15nLi0Gn8dhWbGuhi518qoBySv8KZEYMlKfn/2KdaQPrHdLCJVaj7meSwUNIAJUEz6k6avjlfbg==\",\r\n        \"city\": \"d+xW29Nb6HccBJEshl4kf8irtCoBSD76Ie7uhE3etJefAUvw+FuEDiI5ZtqTydD0rl5/WrXIEMOZbC72kukHzdv+eUL2DXF/6L1Gw/F5O0CBek/Lxbro40HyoVoQiQa1NX19gTAbAjDxiRUMMmGpg6jJBG+bFQsjJlwmXClMMY651u6mEcgNjJo3qEcT/xDa0BbNw3WC2oWZ2vLzf0dLZXyS04JPT9Mb1WjcbY/6y7o4NPrLcPRRSgc4VRE8o4aSVlC81dhmeU4e+F843tYUKglkRcpllYeRAYZhA7MnISQ3/hgMr5U+5ICIz0L+n4U07qdDq10kxM3l1IElaZ6pPA==\",\r\n        \"address\": \"UxxY+Lx6L1c90QBHM2dSuvg3MAhNwO1me/hyw8/D7g7eWrAWOiq+SHfBfGfy+fq45Rk8uH2WwrcxWjLTK05GjmCfelaYB8tFRM0gjPExvOB9A0xUfoo3VsQlgC7hJZVI+duHJeUf/X5fDXkvE7/2m+cFp2CQaSdUH2F2F/FQZZEzk7SPVJ2u2nMJLh8SvqP2HxpS9Qb4n4vIj/LyhQcHBH4GgV1WQ3OCKZitY9ld7shend6ma+uB4843io78JP2SJFw6mwxqyMUG2/NSHCjadUopE1jRfn+DWgOrYcLfHpEsfkpYGz6VeyiAmCrrZRD/A5b4eaMMGEocS2esRQuR2Q==\",\r\n        \"postal_code\": \"\",\r\n        \"state\": \"d+xW29Nb6HccBJEshl4kf8irtCoBSD76Ie7uhE3etJefAUvw+FuEDiI5ZtqTydD0rl5/WrXIEMOZbC72kukHzdv+eUL2DXF/6L1Gw/F5O0CBek/Lxbro40HyoVoQiQa1NX19gTAbAjDxiRUMMmGpg6jJBG+bFQsjJlwmXClMMY651u6mEcgNjJo3qEcT/xDa0BbNw3WC2oWZ2vLzf0dLZXyS04JPT9Mb1WjcbY/6y7o4NPrLcPRRSgc4VRE8o4aSVlC81dhmeU4e+F843tYUKglkRcpllYeRAYZhA7MnISQ3/hgMr5U+5ICIz0L+n4U07qdDq10kxM3l1IElaZ6pPA==\",\r\n        \"country\": \"JboM4kgKEq0VSHR8AiZLdeJwJF4P+eKgMCgBj/gx2BXRWSJohjWI/fS1jmNrSbPuuMLbqodQHBgx9NSEEWZkCMvejZs4BF9yDgOjW86iwsK8NNHjubf/rUFSvvNHWOTXKsQV0vz19uRVkXhLsSy4bmztWTWFXKL/ja7QNhQTWEzgtjxJB4d7RE+lu5igrdvjYNLNaINP8IFR08G0ml6eso7dIHvZG8Rx/nZv4KF4d3s5Nq2tuol8I9jc2woyFj19Av1kcbm3LmxxkDKm/N4mC8FHPx849iZqClx70OyeyWXM47w7gvFTUUdiAcfVIITMYBPSDb3FQQ7Di1ynzdja5A==\",\r\n        \"ip\": \"\"\r\n    },\r\n    \"card_information\": {\r\n        \"card_number\": \"GoizstoIi9ow2cBzaJrra2HOwpkSy0AE4DNEcupoLfJMPxMsGRgUjQrrSiS2dgKpI9YqVEMjr1MvcJiwRvREwVpl1ioB+jDiWMMsh0gvpsaRw3erHFekSde68gDTJvEh3KnaFTLesFYiNj9jv/SZb4+c/jyrQ8hxwH/2CMLzWDbLG2o3RrWRHhArGlEC0fCz7F7nPlyw5rx+uhG6xnC3cGAuvJpG8old38iL6jdVya6NBx013aoFnhc6XPaBF8w1v5Q4ru2/l1QjF3KOEKdBXnx2o1EtuCkLpTXcvAI5dGWBxz0cEe1+/RH6RHtTlCn8/btGBcDKzLt1cXCqryUt8g==\",\r\n        \"cvv\": \"ZFznpMn3390nnK/HhayGpmaZ77Fm++56oq4rIFzLUeaKOXnwIoKVbyDCrJ84I+fJEKt4x8ZzoXXWTunYr8keQT5QUSqXlNzMVrwlD14d1g7QbAqdkr5yRYQgYHLDOf8oprPOCwsOzOyYnUZ6athaLtkbmbwKwEQOj7KeQi0UPHoLt4gB/OEmjoYjYqqapDX0ueGCgBeTnFhFXrz1vA1isVBYqHtvSocNXnGKahFrZ4dnjiJ8I3WJHrAqq5yveCty3spAbsS/GPHnwe/O9Z9qH2XHC9Z95JE/4QZb8tSk4zJfrPN3rBjIre8OHzwcFSnnziL5qYRBp18oHM85Jt9OCQ==\",\r\n        \"card_holder_name\": \"WxdaNMHI9JDqp2/yXGH3Zruqzoqwz3gBrr2YMaC5nt38+B8GQQaoh6Jxxl8aSwqZj3KNaLynlIVX2AqidWC+ILTIv+HXKkxKY7kJd+XnFCHKg3J/w3j44IY5uQpfyDD1ODlbbD2AFXEd/SqiAzBHU6LU6jEvsnGj2EIgpWJJY/6vrnP04RPgrjJRC2ODV9tfRPk9kAHQ3nymmzxcvlMQxPkX82cTjyPotfs0KjikVZ52Gg9NVuq3q6IHTHBIAaQMaT6TcBzhtKbtDoyU6sA/T2i4lEej6xrfqEdz87D8tHSRwfL5MAfkdndN9REdnqCAzyv794LFG5N8ZUlu5VYPYw==\",\r\n        \"expiration_year\": \"EYlBFapU68xZYy13URaD2isrj5Ozwox/JEaLyT4POfrVn+rC6NtJD2gy9McEFqMDkGiGgop0umDSTzt8X0EX+W01xn27RKQDRPRJ7G31gwLCjLLF2BMaJu8e0x45e/f9+9LcLsnIeY7053rYhRRGlm7XgjcbpHdOZ4BR/7Dspl49iLxc0LZP842G17HsU5O4hbxoxCYRvlO0zFk/mKkrMF/TI9ZE369n6S0bL1L507CCo5rnzRvbCNeYtuGnQsoSHbF5cZcWydDfgFvLiGNm8bJzRBue28iiqPmknFQzFlDegTs4fg0KeTL6dOSdZo9vVKYYsKeWE4pb9nJ+amiMHQ==\",\r\n        \"expiration_month\": \"KwhZdzHhTnBsc+fszhtPg+03NzotN+hACrHwh9vlUMvgo3HVykoyljEdUJDkCuq0InZBbVIGWgEzxfpjDNNwGy+P0QwtTLyQk0HmWPbQsJZjHyAIsXgatZju2onrJYVjfv1TFKsWUemlgzOw9R44D7IMbfKu/nVZxk9V4vL6Ku6nP/RBdIEsXo/ONkW2gPrp+ZJWIZCnoPQwGyVQLf7xoOlNSIlY2k110wwg+w1wljTDZGpZS+iYbJgigOkJK1Fg/n0GcRfMGczOUDDsPI9X4wNKAffBwEgEQVOn3is/ulL16gRUh/oVt8pWNGIcMhZMfohCf8XO6eGOkDts0hmU6A==\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/v1/transactions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
