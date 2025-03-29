@@ -13,7 +13,7 @@ from src.presentation.routers.keys_routes import router as keys_router
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["https://front-prueba-kul.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
