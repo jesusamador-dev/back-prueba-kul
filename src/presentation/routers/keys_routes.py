@@ -44,6 +44,7 @@ def get_rsa_keys(user_id: str,
         value=user_id,
         httponly=True,
         samesite="none",
+        domain="https://back-prueba-kul-production.up.railway.app",
         max_age=60 * 60 * 24,
         secure=True
     )
