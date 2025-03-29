@@ -19,19 +19,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-@app.middleware("http")
-async def custom_cors_middleware(request: Request, call_next):
-    origin = request.headers.get("origin")
-    response = await call_next(request)
-
-    response.headers["Access-Control-Allow-Origin"] = origin
-    response.headers["Access-Control-Allow-Credentials"] = "true"
-    response.headers["Access-Control-Allow-Methods"] = "GET,POST,OPTIONS,PUT,DELETE"
-    response.headers["Access-Control-Allow-Headers"] = "Authorization,Content-Type,Set-Cookie"
-
-    return response
-
 setup_exception_handlers(app)
 app.middleware("http")(standardize_response)
 app.include_router(transactions_router, prefix="/v1")
