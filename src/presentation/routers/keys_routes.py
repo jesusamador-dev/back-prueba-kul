@@ -42,9 +42,8 @@ def get_rsa_keys(user_id: str,
     response.set_cookie(
         key="user-keys",
         value=user_id,
-        httponly=True,
+        httponly=False,
         samesite="none",
-        domain="front-prueba-kul.vercel.app",
         max_age=60 * 60 * 24,
         secure=True
     )
