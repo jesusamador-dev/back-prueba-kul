@@ -43,6 +43,7 @@ def get_rsa_keys(user_id: str,
         key="user-keys",
         value=user_id,
         httponly=True,
+        samesite="none",
         max_age=60 * 60 * 24,
         secure=True
     )
