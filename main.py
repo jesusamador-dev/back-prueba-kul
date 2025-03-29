@@ -20,3 +20,7 @@ app.middleware("http")(standardize_response)
 app.include_router(transactions_router, prefix="/v1")
 app.include_router(keys_router, prefix="/v1")
 
+# Punto de entrada
+if __name__ == "__main__":
+    port = int(os.getenv("PORT", 8000))  # Railway asigna un puerto automáticamente
+    uvicorn.run(app, host="0.0.0.0", port=port)
