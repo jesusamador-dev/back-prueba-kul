@@ -1,4 +1,6 @@
 import os
+from urllib.request import Request
+
 import uvicorn
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
@@ -17,18 +19,24 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+@app.middleware("http")
+async def custom_cors_middleware(request: Request, call_next):
+    origin = request.headers.get("origin")
+    response = await call_next(request)
+
+    response.headers["Access-Control-Allow-Origin"] = origin
+    response.headers["Access-Control-Allow-Credentials"] = "true"
+    response.headers["Access-Control-Allow-Methods"] = "GET,POST,OPTIONS,PUT,DELETE"
+    response.headers["Access-Control-Allow-Headers"] = "Authorization,Content-Type,Set-Cookie"
+
+    return response
+
 setup_exception_handlers(app)
 app.middleware("http")(standardize_response)
 app.include_router(transactions_router, prefix="/v1")
 app.include_router(keys_router, prefix="/v1")
 
-@app.get("/vars-test")
-def read_variables():
-    return {
-        "DB_HOST": os.getenv("DB_HOST"),
-        "DB_USER": os.getenv("DB_USER"),
-        "BLUMONPAY_API_URL": os.getenv("BLUMONPAY_API_URL")
-    }
 
 # Punto de entrada
 if __name__ == "__main__":
