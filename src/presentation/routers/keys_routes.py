@@ -43,7 +43,7 @@ def get_rsa_keys(user_id: str,
         key="user-keys",
         value=user_id,
         httponly=True,
-        samesite="Lax",
+        samesite="none",
         secure=True
     )
     return {
