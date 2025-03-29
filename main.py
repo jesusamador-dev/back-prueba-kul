@@ -22,6 +22,14 @@ app.middleware("http")(standardize_response)
 app.include_router(transactions_router, prefix="/v1")
 app.include_router(keys_router, prefix="/v1")
 
+@app.get("/vars-test")
+def read_variables():
+    return {
+        "DB_HOST": os.getenv("DB_HOST"),
+        "DB_USER": os.getenv("DB_USER"),
+        "BLUMONPAY_API_URL": os.getenv("BLUMONPAY_API_URL")
+    }
+
 # Punto de entrada
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 8080))  # Railway asigna un puerto automáticamente
