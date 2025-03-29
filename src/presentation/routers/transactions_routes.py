@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Request, Cookie, Depends, HTTPException
 from sqlalchemy.orm import Session
+from typing import Generator
 
 from src.application.use_cases.transactions.create_transaction_use_case import CreateTransactionUseCase
 from src.application.use_cases.transactions.get_all_transactions import GetAllTransactionsUseCase
@@ -23,13 +24,15 @@ def get_payment_gateway() -> PaymentGateway:
     return BlumonpayPaymentGateway()
 
 
-def get_db_session() -> Session:
+def get_db_session() -> Generator[Session, None, None]:
     db = DatabasePostgres.get_instance()
+    session = None
     try:
         session = db.get_session()
         yield session
     finally:
-        session.close()
+        if session:
+            session.close()
 
 
 def get_transaction_repository(db: Session = Depends(get_db_session)) -> TransactionsRepository:
